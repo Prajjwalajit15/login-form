@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import './style.css';
 
-function App() {
-  const history = useHistory();
+function Login() {
+    const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -33,9 +35,9 @@ function App() {
       if (response.ok) {
         const user = await response.json();
         // Save user object in local storage
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user',JSON.stringify(user));
         // Navigate to the profile page
-        history.push('/profile');
+        navigate('/profile');
       } else {
         // Handle error or show error message to the user
         console.error('Authentication failed:', response.statusText);
@@ -79,4 +81,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
